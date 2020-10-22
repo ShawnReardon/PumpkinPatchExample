@@ -60,18 +60,18 @@ mySprite.setPosition(randint(0, 50), randint(0, 50))
 ghost.setPosition(randint(65, 85), randint(65, 85))
 let Candy = sprites.create(img`
     . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . f f e e e e e e e e f f . . 
-    . . f f e e e e e e e e f f . . 
-    . . f f e e e e e e e e f f . . 
-    . . f f e e e e e e e e f f . . 
-    . . f f e e e e e e e e f f . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
-    . . . . . . . . . . . . . . . . 
+    . . . . . f f f f f . . . . . . 
+    . . . . . f f 1 f f . . . . . . 
+    . . . . . f 1 1 1 f . . . . . . 
+    . . . . f f 1 1 1 f f . . . . . 
+    . . . . f 4 4 4 4 4 f . . . . . 
+    . . . . f 4 4 4 4 4 f . . . . . 
+    . . . f 5 1 f 4 f 1 5 f . . . . 
+    . . . f 5 f f 5 f f 5 f . . . . 
+    . . . f 5 5 5 5 5 5 5 f . . . . 
+    . . . f f 5 5 f 5 5 f f . . . . 
+    . . . . f 5 5 5 5 5 f . . . . . 
+    . . . . f f f f f f f . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
