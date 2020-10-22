@@ -94,6 +94,10 @@ let ghost2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
+Candy.setFlag(SpriteFlag.StayInScreen, true)
+mySprite.setFlag(SpriteFlag.BounceOnWall, true)
+ghost.setFlag(SpriteFlag.BounceOnWall, true)
+ghost2.setFlag(SpriteFlag.BounceOnWall, true)
 game.onUpdateInterval(2000, function () {
     if (isPointsLocked) {
         isPointsLocked = false

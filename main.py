@@ -3,10 +3,23 @@ def on_countdown_end():
 info.on_countdown_end(on_countdown_end)
 
 def on_on_overlap(sprite, otherSprite):
-    mySprite.start_effect(effects.fire, 500)
-    info.start_countdown(0.25)
-sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap)
+    global isPointsLocked
+    if not (isPointsLocked):
+        mySprite.start_effect(effects.confetti, 500)
+        isPointsLocked = True
+        info.change_score_by(1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.food, on_on_overlap)
 
+def on_on_overlap2(sprite, otherSprite):
+    global isLifeLocked
+    if not (isLifeLocked):
+        mySprite.start_effect(effects.fire, 500)
+        isLifeLocked = True
+        info.change_life_by(-1)
+sprites.on_overlap(SpriteKind.player, SpriteKind.enemy, on_on_overlap2)
+
+isLifeLocked = False
+isPointsLocked = False
 mySprite: Sprite = None
 info.set_life(10)
 ghost = sprites.create(img("""
@@ -89,16 +102,24 @@ ghost2 = sprites.create(img("""
     """),
     SpriteKind.enemy)
 
+def on_update_interval():
+    global isPointsLocked, isLifeLocked
+    if isPointsLocked:
+        isPointsLocked = False
+    if isLifeLocked:
+        isLifeLocked = False
+game.on_update_interval(2000, on_update_interval)
+
 def on_forever():
     pass
 forever(on_forever)
 
-def on_update_interval():
+def on_update_interval2():
     Candy.x += randint(-25, 25)
     Candy.y += randint(-25, 25)
-game.on_update_interval(500, on_update_interval)
+game.on_update_interval(500, on_update_interval2)
 
-def on_update_interval2():
+def on_update_interval3():
     if ghost.x != mySprite.x:
         ghost.vx = mySprite.x - ghost.x
     if ghost.y != mySprite.y:
@@ -107,4 +128,4 @@ def on_update_interval2():
         ghost2.vx = mySprite.x - ghost2.x
     if ghost2.x != mySprite.x:
         ghost2.vy = mySprite.x - ghost2.x
-game.on_update_interval(200, on_update_interval2)
+game.on_update_interval(200, on_update_interval3)
