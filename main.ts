@@ -2,12 +2,21 @@ info.onCountdownEnd(function () {
     info.changeLifeBy(-1)
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
-	
+    if (!(isPointsLocked == 1)) {
+        mySprite.startEffect(effects.confetti, 500)
+        isPointsLocked = 1
+        info.changeScoreBy(1)
+    }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
-    mySprite.startEffect(effects.fire, 500)
-    info.startCountdown(0.25)
+    if (!(isLifeLocked == 1)) {
+        mySprite.startEffect(effects.fire, 500)
+        isLifeLocked = 1
+        info.changeLifeBy(-1)
+    }
 })
+let isLifeLocked = 0
+let isPointsLocked = 0
 let mySprite: Sprite = null
 info.setLife(10)
 let ghost = sprites.create(img`
@@ -85,6 +94,14 @@ let ghost2 = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
     `, SpriteKind.Enemy)
+game.onUpdateInterval(2000, function () {
+    if (isPointsLocked == 1) {
+        isPointsLocked = 0
+    }
+    if (isLifeLocked == 1) {
+        isLifeLocked = 0
+    }
+})
 forever(function () {
 	
 })
