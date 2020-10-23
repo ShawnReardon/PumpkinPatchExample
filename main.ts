@@ -1,24 +1,22 @@
-info.onCountdownEnd(function () {
-    info.changeLifeBy(-1)
-})
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Food, function (sprite, otherSprite) {
     if (!(isPointsLocked)) {
         mySprite.startEffect(effects.confetti, 500)
         isPointsLocked = true
-        info.changeScoreBy(1)
+        Score += 1
     }
 })
 sprites.onOverlap(SpriteKind.Player, SpriteKind.Enemy, function (sprite, otherSprite) {
     if (!(isLifeLocked)) {
         mySprite.startEffect(effects.fire, 500)
         isLifeLocked = true
-        info.changeLifeBy(-1)
+        Health += -1
     }
 })
 let isLifeLocked = false
 let isPointsLocked = false
 let mySprite: Sprite = null
-info.setLife(10)
+let Score = 0
+let Health = 10
 let ghost = sprites.create(img`
     . . . . . . . . . . . . . . . . 
     . . . . . . . . . . . . . . . . 
@@ -107,7 +105,8 @@ game.onUpdateInterval(2000, function () {
     }
 })
 forever(function () {
-	
+    info.setScore(Score)
+    info.setLife(Health)
 })
 game.onUpdateInterval(500, function () {
     Candy.x += randint(-25, 25)
